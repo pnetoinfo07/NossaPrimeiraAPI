@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MinhaPrimeiraAPII.Services;
 
 namespace MinhaPrimeiraAPII.Controllers
 {
@@ -6,10 +7,16 @@ namespace MinhaPrimeiraAPII.Controllers
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
-        [HttpGet("BoaNoite")]
-        public string Saudacao()
+        [HttpGet("Listar")]
+        public List<string> Listar()
         {
-            return "Boa noite turma";
+            return ProdutoService.Produtos;
+        }
+        [HttpPost("New")]
+        public string Adicionar(string descricao)
+        {
+            ProdutoService.Adicionar(descricao);
+            return "Produto adicionado com sucesso";
         }
     }
 }
